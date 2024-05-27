@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Submitform.css';
+import axios from 'axios';
 
 function Submitform() {
   const [formData, setFormData] = useState({
@@ -14,10 +15,22 @@ function Submitform() {
     propertyPhotos: null,
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
     console.log(formData);
+
+    try {
+      const response = await axios.post('http://localhost:4000/api/formdata/submitform', formData, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Form submitted successfully:', response.data);
+      // Handle success (e.g., show a success message, reset form, etc.)
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Handle error (e.g., show an error message)
+    }
   };
 
   return (

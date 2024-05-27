@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap,LoadScript,Marker } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
@@ -13,6 +13,8 @@ function MyComponent() {
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' or 'hybrid'
 
   // Fetch user's current location on component mount
+
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
