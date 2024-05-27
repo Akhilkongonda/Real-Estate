@@ -70,7 +70,7 @@ function MyComponent() {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={userLocation || { lat: 17.3850, lng: 78.4867 }} // Center map on user's current location or default center
-        zoom={userLocation ? 15 : 8} // Zoom level based on user's location availability
+        zoom={userLocation ? 20 : 8} // Zoom level based on user's location availability
         mapTypeId={mapType} // Set mapTypeId based on mapType state
         onClick={handleClick} // Attach click event handler
         onLoad={(map) => setMap(map)} // Set the map instance
