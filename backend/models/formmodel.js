@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const formSchema = new Schema({
+
+  surveyNumber: {
+    type: String,
+    required: true
+  },
+
   width: {
     type: String,
     required: true
@@ -37,9 +43,20 @@ const formSchema = new Schema({
   },
   propertyPhotos: {
     type: String,
-    default: '' // Adjust this according to how you plan to store the file (e.g., URL to the file)
+    default:'' // Adjust this according to how you plan to store the file (e.g., URL to the file)
+  },
+  propertyLocation: {
+    lat: {
+      type: Number,
+      required: true
+    },
+    lng: {
+      type: Number,
+      required: true
+    }
   }
-}, {
+},
+{
   timestamps: true
 });
 

@@ -6,6 +6,7 @@ const addFormdata = async (req, res) => {
   try {
     console.log(req.body);
     const formData = new Form({
+      surveyNumber: req.body.surveyNumber,
       width: req.body.width,
       length: req.body.length,
       price: req.body.price,
@@ -14,7 +15,11 @@ const addFormdata = async (req, res) => {
       agentName: req.body.agentName,
       agentMobile: req.body.agentMobile,
       description: req.body.description,
-      propertyPhotos: req.body.propertyPhotos
+      propertyPhotos: req.body.propertyPhotos.name,
+      propertyLocation: {
+        lat: req.body.propertyLocation.lat,
+        lng: req.body.propertyLocation.lng
+      }
     });
 
     const result = await formData.save();

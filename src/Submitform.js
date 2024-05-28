@@ -6,6 +6,8 @@ import { FormContext } from './Contexts/FormContext';
 
 function Submitform() {
   const {submitFormData, setSubmitFormData} = useContext(FormContext);
+
+  const [successmsg,setsuccessmsg] = useState('');
   const [formData, setFormData] = useState({
     surveyNumber:'',
     width: '',
@@ -36,6 +38,27 @@ function Submitform() {
         },
       });
       console.log('Form submitted successfully:', response.data);
+      if(response.status === 201){
+        setsuccessmsg('Property Data Submitted Successfully');
+      }else{    
+        setsuccessmsg('Error Submitting Property Data');
+      }
+
+
+      setFormData({
+        surveyNumber:'',
+        width: '',
+        length: '',
+        price: '',
+        facing: '',
+        locationLink: '',
+        agentName: '',
+        agentMobile: '',
+        description: '',
+        propertyPhotos: null,
+        propertyLocation: null,
+      });
+
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -48,7 +71,7 @@ function Submitform() {
 
   useEffect(()=>{
     setFormData(submitFormData);
-  },[])
+  },[]);
 
   return (
     <div className="submit-form">
@@ -169,7 +192,8 @@ function Submitform() {
             type="file"
             name="propertyPhotos"
             onChange={(e) => setFormData({ ...formData, propertyPhotos: e.target.files[0] })}
-            required
+            
+          
           />
         </label>
 
@@ -184,6 +208,9 @@ function Submitform() {
         </label>
 
         <button type="submit">Submit</button>
+        {
+          successmsg && <p className='text-success'>{successmsg}</p>
+        }
       </form>
     </div>
   );
