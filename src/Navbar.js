@@ -4,30 +4,30 @@ import './Navbar.css'
 
 export default function Navbar() {
   return (
-    <nav className="navbar">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <Link to="/home" className="nav-link">
+    <nav className="Navbar">
+      <ul className="Navbar-nav">
+        <li className="Nav-item">
+          <Link to="/home" className="Nav-link">
             Home
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/submitform" className="nav-link">
+        <li className="Nav-item">
+          <Link to="/submitform" className="Nav-link">
             Submit Form
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/map" className="nav-link">
+        <li className="Nav-item">
+          <Link to="/map" className="Nav-link">
             Map
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/" className="nav-link">
+        <li className="Nav-item">
+          <Link to="/" className="Nav-link">
             Login
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="/signup" className="nav-link">
+        <li className="Nav-item">
+          <Link to="/signup" className="Nav-link">
             Signup
           </Link>
         </li>

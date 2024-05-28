@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
 import './Submitform.css';
+import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { FormContext } from './Contexts/FormContext';
 
 function Submitform() {
+  const {submitFormData, setSubmitFormData} = useContext(FormContext);
   const [formData, setFormData] = useState({
+    surveyNumber:'',
     width: '',
     length: '',
     price: '',
@@ -13,12 +17,18 @@ function Submitform() {
     agentMobile: '',
     description: '',
     propertyPhotos: null,
+    propertyLocation: null,
   });
+  const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-
+    if(formData.propertyLocation == null){
+      alert('Please Select the site location!!')
+      return;
+    }
     try {
       const response = await axios.post('http://localhost:4000/api/formdata/submitform', formData, {
         headers: {
@@ -26,12 +36,19 @@ function Submitform() {
         },
       });
       console.log('Form submitted successfully:', response.data);
-      // Handle success (e.g., show a success message, reset form, etc.)
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Handle error (e.g., show an error message)
     }
   };
+
+  const handleSelectLocation = ()=>{
+    setSubmitFormData(formData);
+    navigate('/map');
+  }
+
+  useEffect(()=>{
+    setFormData(submitFormData);
+  },[])
 
   return (
     <div className="submit-form">
@@ -39,6 +56,17 @@ function Submitform() {
       <p>List Your Property with us and Enhance Your Sales Leads with our Agents</p>
 
       <form onSubmit={handleSubmit}>
+      <label>
+          Survey Number *
+          <input
+            type="text"
+            name="surveyNumber"
+            value={formData.surveyNumber}
+            onChange={(e) => setFormData({ ...formData, surveyNumber: e.target.value })}
+            required
+          />
+        </label>
+
         <label>
           Width *
           <input
@@ -78,8 +106,9 @@ function Submitform() {
             name="facing"
             value={formData.facing}
             onChange={(e) => setFormData({ ...formData, facing: e.target.value })}
+            required
           >
-            <option value="">Choose</option>
+            <option defaultChecked disabled value="">Choose Facing</option>
             <option value="north">North</option>
             <option value="south">South</option>
             <option value="east">East</option>
@@ -109,6 +138,7 @@ function Submitform() {
             name="agentName"
             value={formData.agentName}
             onChange={(e) => setFormData({ ...formData, agentName: e.target.value })}
+            required
           />
         </label>
 
@@ -119,6 +149,7 @@ function Submitform() {
             name="agentMobile"
             value={formData.agentMobile}
             onChange={(e) => setFormData({ ...formData, agentMobile: e.target.value })}
+            required
           />
         </label>
 
@@ -128,6 +159,7 @@ function Submitform() {
             name="description"
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+            required
           ></textarea>
         </label>
 
@@ -137,7 +169,18 @@ function Submitform() {
             type="file"
             name="propertyPhotos"
             onChange={(e) => setFormData({ ...formData, propertyPhotos: e.target.files[0] })}
+            required
           />
+        </label>
+
+        <label>
+          {/* Select  Location on Map */}
+          <button className='btn bg-info px-2' onClick={handleSelectLocation}>Select Location</button>
+          {/* <input
+            type="file"
+            name="propertyPhotos"
+            onChange={(e) => setFormData({ ...formData, propertyPhotos: e.target.files[0] })}
+          /> */}
         </label>
 
         <button type="submit">Submit</button>

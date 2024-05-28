@@ -1,22 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleMap,LoadScript,Marker } from '@react-google-maps/api';
+import React, { useState, useEffect, useContext } from 'react';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { FormContext } from './Contexts/FormContext';
+import { useNavigate } from 'react-router-dom';
 
 const containerStyle = {
   width: '100%',
   height: '100vh'
 };
 
-function MyComponent() {
+function MyComponent() { 
   const [markers, setMarkers] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
   const [map, setMap] = useState(null); 
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' or 'hybrid'
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCoords, setSelectedCoords] = useState({ lat: null, lng: null });
+  const {submitFormData, setSubmitFormData} = useContext(FormContext);
+  const navigate = useNavigate();
+  
+  // Handle map click event
+  const handleClick = (e) => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+    setSelectedCoords({ lat, lng });
+    setShowModal(true);
+  };
 
+  // Handle modal confirm button click
+  const handleConfirm = () => {
+    setMarkers((current) => [...current, selectedCoords]);
+    setSubmitFormData((prevState)=>({...prevState, propertyLocation:selectedCoords}));
+    setShowModal(false);
+    navigate('/submitForm')
+  };
+
+  // Handle modal select again button click
+  const handleSelectAgain = () => {
+    setShowModal(false);
+  };
+  
   // Fetch user's current location on component mount
-
-
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (navigator.geolocation) {   
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
@@ -30,17 +55,6 @@ function MyComponent() {
       console.error('Geolocation is not supported by this browser.');
     }
   }, []);
-
-  // Handle map click event
-  const handleClick = (e) => {
-    const lat = e.latLng.lat();
-    const lng = e.latLng.lng();
-    const newMarker = { lat, lng };
-
-    // Update markers array
-    setMarkers((current) => [...current, newMarker]);
-  };
-
   // Effect to add marker for user's current location
   useEffect(() => {
     if (map && userLocation) {
@@ -69,13 +83,13 @@ function MyComponent() {
 
   return (
     <LoadScript googleMapsApiKey="AIzaSyBbz5agIqI3MeWg1FoOUQCMsTmN-z5Ktww">
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={userLocation || { lat: 17.3850, lng: 78.4867 }} // Center map on user's current location or default center
-        zoom={userLocation ? 20 : 8} // Zoom level based on user's location availability
-        mapTypeId={mapType} // Set mapTypeId based on mapType state
-        onClick={handleClick} // Attach click event handler
-        onLoad={(map) => setMap(map)} // Set the map instance
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={userLocation || { lat: 17.3850, lng: 78.4867 }} // Center map on user's current location or default center
+          zoom={userLocation ? 20 : 8} // Zoom level based on user's location availability
+          mapTypeId={mapType} // Set mapTypeId based on mapType state
+          onClick={handleClick} // Attach click event handler
+          onLoad={(map) => setMap(map)} // Set the map instance
       >
         {/* Display all markers */}
         {markers.map((marker, index) => (
@@ -120,6 +134,35 @@ function MyComponent() {
           <p>Longitude: {markers[markers.length - 1].lng}</p>
         </div>
       )}
+
+      {/* Modal */}
+      {showModal && (
+        <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered" style={{ maxWidth: '80%' }}>
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Selected Location</h5>
+                <button type="button" className="close" onClick={() => setShowModal(false)}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body text-center">
+                <p>Latitude: {selectedCoords.lat}</p>
+                <p>Longitude: {selectedCoords.lng}</p>
+              </div>
+              <div className="modal-footer justify-content-between">
+                <button type="button" className="btn btn-secondary w-50" onClick={handleSelectAgain}>
+                  Select Again
+                </button>
+                <button type="button" className="btn btn-primary w-50" onClick={handleConfirm}>
+                  Confirm
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
     </LoadScript>
   );
 }
