@@ -6,6 +6,7 @@ const addFormdata = async (req, res) => {
   try {
     console.log("REQUEST BODY  IS : ",req.body);
     const formData = new Form({
+      surveyNumber: req.body.surveyNumber,
       width: req.body.width,
       length: req.body.length,
       price: req.body.price,

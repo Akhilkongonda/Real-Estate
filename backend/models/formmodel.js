@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const formSchema = new Schema({
+
+  surveyNumber: {
+    type: String,
+    required: true
+  },
+
   width: {
     type: String,
     required: true
