@@ -8,6 +8,7 @@ import Signup from './Signup';
 import Home from './Home';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import SellersMap from './Components/SellersMap/SellersMap';
 
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
             {
               path:'/submitform',
               element:<Submitform/>
+            },
+            {
+              path:'/SellersMap',
+              element:<SellersMap/>
             },
             {
               path:'/map',

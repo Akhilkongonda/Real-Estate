@@ -17,7 +17,7 @@ function Submitform() {
     agentMobile: '',
     description: '',
     propertyPhotos: null,
-    propertyLocation: null,
+    propertyLocation: {lat:'',lng:''},
   });
   const navigate = useNavigate();
 
@@ -30,6 +30,9 @@ function Submitform() {
       return;
     }
     try {
+      formData.propertyLocation.lat = formData.propertyLocation.lat.toString()
+      formData.propertyLocation.lng = formData.propertyLocation.lng.toString()
+      console.log(formData)
       const response = await axios.post('http://localhost:4000/api/formdata/submitform', formData, {
         headers: {
           'Content-Type': 'application/json',
@@ -169,7 +172,6 @@ function Submitform() {
             type="file"
             name="propertyPhotos"
             onChange={(e) => setFormData({ ...formData, propertyPhotos: e.target.files[0] })}
-            required
           />
         </label>
 

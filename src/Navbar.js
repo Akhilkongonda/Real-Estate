@@ -17,8 +17,8 @@ export default function Navbar() {
           </Link>
         </li>
         <li className="Nav-item">
-          <Link to="/map" className="Nav-link">
-            Map
+          <Link to="/SellersMap" className="Nav-link">
+            Show On Map
           </Link>
         </li>
         <li className="Nav-item">

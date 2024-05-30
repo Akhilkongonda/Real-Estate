@@ -36,11 +36,15 @@ const formSchema = new Schema({
     default: ''
   },
   propertyPhotos: {
-    type: String,
-    default: '' // Adjust this according to how you plan to store the file (e.g., URL to the file)
+    type: Object,
+    default: null
+  },
+  propertyLocation: {
+    type: {lat: String, lng: String},
+    required:true
   }
 }, {
   timestamps: true
 });
-
+ 
 module.exports = mongoose.model('Form', formSchema);

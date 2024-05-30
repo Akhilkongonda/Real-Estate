@@ -14,7 +14,7 @@ function MyComponent() {
   const [map, setMap] = useState(null); 
   const [mapType, setMapType] = useState('roadmap'); // 'roadmap' or 'hybrid'
   const [showModal, setShowModal] = useState(false);
-  const [selectedCoords, setSelectedCoords] = useState({ lat: null, lng: null });
+  const [selectedCoords, setSelectedCoords] = useState({ lat: '', lng: '' });
   const {submitFormData, setSubmitFormData} = useContext(FormContext);
   const navigate = useNavigate();
   
