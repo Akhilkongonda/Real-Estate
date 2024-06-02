@@ -11,7 +11,6 @@ const addFormdata = async (req, res) => {
       length: req.body.length,
       price: req.body.price,
       facing: req.body.facing,
-      locationLink: req.body.locationLink,
       agentName: req.body.agentName,
       agentMobile: req.body.agentMobile,
       description: req.body.description,

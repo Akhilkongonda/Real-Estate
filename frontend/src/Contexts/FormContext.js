@@ -9,7 +9,7 @@ const FormProvider = ({children})=>{
         length: '',
         price: '',
         facing: '',
-        locationLink: '',
+        // locationLink: '',
         agentName: '',
         agentMobile: '',
         description: '',

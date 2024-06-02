@@ -101,7 +101,7 @@ const SellerMap = () => {
                 <p>Length: {selectedMarker.length}</p>
                 <p>Price: {selectedMarker.price}</p>
                 <p>Facing: {selectedMarker.facing}</p>
-                <p>Location Link: <a href={selectedMarker.locationLink} target="_blank" rel="noopener noreferrer">{selectedMarker.locationLink}</a></p>
+                {/* <p>Location Link: <a href={selectedMarker.locationLink} target="_blank" rel="noopener noreferrer">{selectedMarker.locationLink}</a></p> */}
                 <p>Agent Name: {selectedMarker.agentName}</p>
                 <p>Agent Mobile: {selectedMarker.agentMobile}</p>
                 <p>Description: {selectedMarker.description}</p>

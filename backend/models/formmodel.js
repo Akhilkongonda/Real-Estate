@@ -25,10 +25,6 @@ const formSchema = new Schema({
     enum: ['north', 'south', 'east', 'west', 'north east', 'north west', 'south east', 'south west'],
     default: ''
   },
-  locationLink: {
-    type: String,
-    required: true
-  },
   agentName: {
     type: String,
     default: ''
