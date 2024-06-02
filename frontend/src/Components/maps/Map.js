@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import { FormContext } from './Contexts/FormContext';
+import { FormContext } from '../../Contexts/FormContext';
 import { useNavigate } from 'react-router-dom';
 
 const containerStyle = {

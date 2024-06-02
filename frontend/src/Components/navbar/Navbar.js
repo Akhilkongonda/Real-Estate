@@ -6,11 +6,11 @@ export default function Navbar() {
   return (
     <nav className="Navbar">
       <ul className="Navbar-nav">
-        <li className="Nav-item">
+        {/* <li className="Nav-item">
           <Link to="/home" className="Nav-link">
             Home
           </Link>
-        </li>
+        </li> */}
         <li className="Nav-item">
           <Link to="/submitform" className="Nav-link">
             Submit Form
@@ -21,7 +21,7 @@ export default function Navbar() {
             Show On Map
           </Link>
         </li>
-        <li className="Nav-item">
+        {/* <li className="Nav-item">
           <Link to="/" className="Nav-link">
             Login
           </Link>
@@ -30,7 +30,7 @@ export default function Navbar() {
           <Link to="/signup" className="Nav-link">
             Signup
           </Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

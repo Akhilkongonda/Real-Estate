@@ -53,4 +53,4 @@ const formSchema = new Schema({
   timestamps: true
 });
  
-module.exports = mongoose.model('Form', formSchema);
+module.exports = mongoose.model('property_details', formSchema);

@@ -1,0 +1,25 @@
+.Navbar {
+  background-color: #aadbf2;
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.Navbar-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Nav-item {
+  padding: 14px 20px;
+}
+
+.Nav-link {
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s;
+  color:black;
+}
+      

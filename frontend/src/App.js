@@ -1,14 +1,14 @@
-import Map from './Map';
+import Map from './Components/maps/Map';
 import './App.css';
-import Submitform from './Submitform';
+import Submitform from './Components/submitForm/Submitform';
 
-import Rootlayout from './Rootlayout';
-import Login from './Login';
-import Signup from './Signup';
-import Home from './Home';
+import Rootlayout from './Components/rootLayout/Rootlayout';
+import Login from './Components/login/Login';
+import Signup from './Components/signup/Signup';
+import Home from './Components/home/Home';
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import SellersMap from './Components/SellersMap/SellersMap';
+import SellersMap from './Components/sellersMap/SellersMap';
 
 
 function App() {

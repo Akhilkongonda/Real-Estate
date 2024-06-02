@@ -14,7 +14,7 @@ const FormProvider = ({children})=>{
         agentMobile: '',
         description: '',
         propertyPhotos: null,
-        propertyLocation: null,
+        propertyLocation: {lat:'NA', lng:'NA'},
       });
 
       return(

@@ -21,7 +21,7 @@ app.use('/api/formdata',formRoutes);
 
 //connect to db
 
-mongoose.connect('mongodb+srv://akhil:1GM5MkZ06A6Vr2PV@mernapp.le4umhu.mongodb.net/?retryWrites=true&w=majority&appName=MERNapp')
+mongoose.connect('mongodb+srv://akhil:1GM5MkZ06A6Vr2PV@mernapp.le4umhu.mongodb.net/real_estate?retryWrites=true&w=majority&appName=MERNapp')
     .then((res)=>{
         //listen for requests
         app.listen(4000,()=>{

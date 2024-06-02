@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import axios from 'axios';
 
+import './SellerMap.css'
+
 const containerStyle = {
   width: '100%',
   height: '100vh'
@@ -76,20 +78,11 @@ const SellerMap = () => {
           />
         ))}
 
-        <button
-          style={{
-            position: 'absolute',
-            top: 10,
-            right: 10,
-            zIndex: 1,
-            padding: '10px',
-            background: 'white',
-            borderRadius: '5px',
-            cursor: 'pointer'
-          }}
+        <button className='map-toggler'
           onClick={handleToggleMapType}
         >
-          {mapType === 'roadmap' ? 'Switch to Hybrid' : 'Switch to Roadmap'}
+         
+          Switch Map
         </button>
       </GoogleMap>
 
